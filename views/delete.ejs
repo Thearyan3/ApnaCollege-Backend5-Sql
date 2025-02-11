@@ -1,16 +1,17 @@
+<!-- delete.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete form</title>
+    <title>Delete Form</title>
 </head>
 <body>
-        <h2>You are about to Delete this user : <%= user.username %></h2>
-        <form method="get" action="/user/<%=user.id%>?_method=DELETE">
-            <input type="password" name="password" placeholder="Enter Password">
-            <input type="email" name="email" placeholder="Enter email">
-            <button>Delete</button>
-        </form>
+    <h2>You are about to delete this user: <%= user.username %></h2>
+    <form method="POST" action="/user/<%= user.id %>?_method=DELETE">
+        <input type="password" name="password" placeholder="Enter Password" required>
+        <input type="email" name="email" placeholder="Enter Email" required>
+        <button type="submit">Delete</button>
+    </form>
 </body>
 </html>
