@@ -108,5 +108,32 @@ app.patch("/user/:id", (req, res) => {
     }
 });
 
+// Add User Route
+app.post("/user", (req, res) => { 
+    let q = "INSERT INTO user (id, username, email, password) VALUES (?,?,?,?)";
 
+    let getRandomUser = () => {
+        return [
+            faker.string.uuid(), // You can still use UUID if you like.
+            faker.internet.username(),
+            faker.internet.email(),
+            faker.internet.password(),
+        ];
+    }
+
+    let data = getRandomUser();
+
+    try {
+        connection.query(q, data, (err, result) => { 
+            if (err) {
+                console.log(err);
+                throw err;
+            }
+            res.redirect("/user");
+        });
+    } catch (err) {
+        console.log(err);
+        res.send("Some error in DB");
+    }
+});
 
